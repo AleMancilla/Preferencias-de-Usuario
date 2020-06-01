@@ -10,6 +10,7 @@ class HomePage extends StatelessWidget {
         title: Text("HomePage"),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text("texto1"),
           Divider(),
@@ -20,6 +21,49 @@ class HomePage extends StatelessWidget {
           
         ],
       ),
+      drawer: _crearMenu(context),
     );
+  }
+
+  Widget _crearMenu(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Container(),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("lib/assets/img/menu-img.jpg"),fit: BoxFit.cover
+              )
+            ),
+          ),
+
+          ListTile(
+            leading: Icon(Icons.home,color: Colors.blue,),
+            title: Text("Home"),
+            onTap: (){
+              Navigator.pushReplacementNamed(context, "/home");
+            },
+          ),
+          
+          ListTile(
+            leading: Icon(Icons.people,color: Colors.blue,),
+            title: Text("People"),
+            onTap: (){},
+          ),
+          
+          ListTile(
+            leading: Icon(Icons.settings,color: Colors.blue,),
+            title: Text("Settings"),
+            onTap: (){
+              Navigator.pushReplacementNamed(context, "/settings");
+            },
+          ),
+          
+        ],
+      ),
+    );
+
   }
 }
