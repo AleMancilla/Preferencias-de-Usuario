@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preferensusuario/Widgets/Menu_Drawer_Widget.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key key}) : super(key: key);
@@ -16,6 +17,7 @@ class SettingPage extends StatelessWidget {
           
         ],
       ),
+      drawer: MenuDrawer(),
     );
   }
 }
