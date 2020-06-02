@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:preferensusuario/Widgets/Menu_Drawer_Widget.dart';
+import 'package:preferensusuario/src/share_prefs/preferencias_usuario.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  final prefs = PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +14,11 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("texto1"),
+          Text("Color secundario"),
           Divider(),
-          Text("texto1"),
+          Text("Genero ${prefs.genero}"),
           Divider(),
-          Text("texto1"),
+          Text("Nombre de Usuario"),
           Divider(),
           
         ],
