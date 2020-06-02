@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:preferensusuario/Widgets/Menu_Drawer_Widget.dart';
+import 'package:preferensusuario/src/share_prefs/preferencias_usuario.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingPage extends StatefulWidget {
@@ -11,37 +12,38 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
 
-  bool _colorSecundario =true ;
-  int _genero =1;
-  String _nombre = 'Pedro';
+  int _genero;
+  bool _colorSecundario ;
+  String _nombre;
 
   TextEditingController _textController;
 
-
+  final prefs = PreferenciasUsuario();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    cargarPref();
+    _genero = prefs.genero;
+    _colorSecundario = prefs.colorSecundario;
+    _nombre = prefs.nombre;
     _textController = new TextEditingController(text: _nombre);
   }
 
-  cargarPref()async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _genero = prefs.getInt("genero");
-    setState(() {
-      
-    });
-  }
-
-  _setSelectedRadio(int valor)async{
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt("genero", valor);
+  _setSelectedRadio(int valor){
+    prefs.genero = valor;
     _genero = valor;
-    setState(() {
-      
-    });
+    setState(() { });
+  }
+  _setColorSecundario(bool valor){
+    prefs.colorSecundario= valor;
+    _colorSecundario = valor;
+    setState(() { });
+  }
+  _setNombre(String valor){
+    prefs.nombre =valor;
+    _nombre = valor;
+    setState(() { });
   }
 
   @override
@@ -63,9 +65,7 @@ class _SettingPageState extends State<SettingPage> {
           SwitchListTile(
             value: true, 
             onChanged: ( value ){
-              setState(() {  
-                _colorSecundario = value;
-              });
+              _setColorSecundario(value);
             },
             title: Text("Color secundario"),
           ),
@@ -93,7 +93,9 @@ class _SettingPageState extends State<SettingPage> {
                 labelText: 'Nombre',
                 helperText: 'Nombre de la persona usando el telefono'
               ),
-              onChanged: (value){},
+              onChanged: (value){
+                _setNombre(value);
+              },
             ),
           ),
 
