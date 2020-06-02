@@ -27,7 +27,7 @@ class _SettingPageState extends State<SettingPage> {
     _genero = prefs.genero;
     _colorSecundario = prefs.colorSecundario;
     _nombre = prefs.nombre;
-    _textController = new TextEditingController(text: _nombre);
+    _textController = new TextEditingController(text: prefs.nombre);
   }
 
   _setSelectedRadio(int valor){
@@ -36,7 +36,7 @@ class _SettingPageState extends State<SettingPage> {
     setState(() { });
   }
   _setColorSecundario(bool valor){
-    prefs.colorSecundario= valor;
+    prefs.colorSecundario = valor;
     _colorSecundario = valor;
     setState(() { });
   }
@@ -51,6 +51,7 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Settings"),
+        backgroundColor: (prefs.colorSecundario)?Colors.teal:Colors.blue,
       ),
       body: ListView(
         children: <Widget>[
@@ -63,7 +64,7 @@ class _SettingPageState extends State<SettingPage> {
           Divider(),
 
           SwitchListTile(
-            value: true, 
+            value: _colorSecundario, 
             onChanged: ( value ){
               _setColorSecundario(value);
             },

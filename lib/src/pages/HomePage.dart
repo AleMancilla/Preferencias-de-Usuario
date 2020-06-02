@@ -10,8 +10,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("HomePage"),
+        backgroundColor: (prefs.colorSecundario)?Colors.teal:Colors.blue,
       ),
       body: Column(
+        
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text("Color secundario: ${prefs.colorSecundario}"),
