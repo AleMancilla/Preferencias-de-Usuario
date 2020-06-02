@@ -24,6 +24,7 @@ class _SettingPageState extends State<SettingPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    prefs.ultimaPage = "/settings";
     _genero = prefs.genero;
     _colorSecundario = prefs.colorSecundario;
     _nombre = prefs.nombre;
